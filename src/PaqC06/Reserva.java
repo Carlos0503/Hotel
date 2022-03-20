@@ -84,4 +84,5 @@ public class Reserva {
     public void setRegali(String regali) {
         this.regali = regali;
     }
+
 }

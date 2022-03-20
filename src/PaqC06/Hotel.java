@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class Hotel {
     Reserva [][] hotel;
 
+
     public Hotel() {
         this.hotel = new Reserva[8][6];
         int i;
@@ -21,6 +22,7 @@ public class Hotel {
     public void setHotel(int i,int j,Reserva r){
         this.hotel[i][j] = r;
     }
+    
 
     public String toString(){
         int i;
@@ -64,58 +66,102 @@ public class Hotel {
                 if(this.hotel[i][j]==null){
                     i++;
                     j++;
-                    k= i + (double)j/10;
+                    k = i + (double)j/10;
                     return k;
                 }
             }
         }
-        System.out.println("No hay habitaciones disponibles");
         return 0;
-
     }
-    public void hacerReserva(){
-        double k = habDisponible();
-        if(k == 0){System.exit(0);}
-        int i = (int)k;
-        int j = (int)((k-i)*10);
-        Scanner sc = new Scanner(System.in);
-        String dni;
-        String nombre;
-        String apellidos;
-        String telefono;
-        String tarjeta;
-        String fechaent;
-        String fechasal;
-        String regali;
-        System.out.println("Introduce tu DNI:");
-        dni = sc.nextLine();
-        System.out.println("Introduce tu nombre:");
-        nombre = sc.nextLine();
-        System.out.println("Introduce tus apellidos:");
-        apellidos = sc.nextLine();
-        System.out.println("Introduce tu teléfono:");
-        telefono = sc.nextLine();
-        System.out.println("Introduce tu tarjeta:");
-        tarjeta = sc.nextLine();
-        System.out.println("Introduce tu fecha de entrada:");
-        fechaent = sc.nextLine();
-        System.out.println("Introduce tu fecha de salida:");
-        fechasal = sc.nextLine();
-        System.out.println("Introduce tu régimen alimentario:");
-        regali = sc.nextLine();
-        System.out.println("Ha reservado la habitación "+k);
-        i--;
-        j--;
-        rellenarHab(i,j,dni,nombre,apellidos,telefono,tarjeta,fechaent,fechasal,regali);
+    private double habPlantaDisponible(int i){ //
+        int j;
+        double k;
+        if (i==0){
+            for (i=0;i<5;i++){
+                for (j=0;j<6;j++){
+                    if(this.hotel[i][j]==null){
+                        i++;
+                        j++;
+                        k = i + (double)j/10;
+                        return k;
+                    }
+                }
+            }
+        }
+        else for(j=0;j<6;j++){
+            if(this.hotel[i][j]==null){
+                i++;
+                j++;
+                k = i + (double)j/10;
+                return k;
+            }
+        }
+        return 0;
+    }
+
+    public double [] tipoHab(int [] tipo){
+        int i;
+        double k;
+        double [] hab = new double[48];
+        for(i=0;i<48;i++){
+            if(tipo[i] == 2){
+                k = habPlantaDisponible(7);
+                hab[i] = k;
+            }
+            if(tipo[i] == 1){
+                k = habPlantaDisponible(5);
+                if(k == 0){
+                    k = habPlantaDisponible(6);
+                    hab[i] = k;
+                }
+                else hab[i] = k;
+            }
+            if(tipo[i] == 0){
+                k = habPlantaDisponible(0);
+                hab[i] = k;
+            }
+        }
+        return hab;
+    }
+    public void hacerReserva(int [] tipo){
+        int h;
+        double [] hab = tipoHab(tipo);
+        for(h=0;h<48;h++) {
+            double k = hab[h];
+            if (k!=0) {
+                int i = (int) k;
+                int j = (int) ((k - i) * 10);
+                String dni;
+                String nombre;
+                String apellidos;
+                String telefono;
+                String tarjeta;
+                String fechaent;
+                String fechasal;
+                String regali;
+                i--;
+                j--;
+                // Este método llamará al metodo rellenarHab cuando se unan las dos partes
+            }
+        }
     }
     protected void rellenarHab(int i,int j,String dni,String nombre,String apellidos,String telefono,String tarjeta,String fechaent,String fechasal,String regali){
         Reserva r = new Reserva(dni,nombre,apellidos,telefono,tarjeta,fechaent,fechasal,regali);
         setHotel(i,j,r);
 
     }
-    public void eliminarRes(int i, int j){
-        i--;
-        j--;
-        this.hotel[i][j]=null;
+    public void eliminarRes(String dni){
+        int i;
+        int j;
+        String d;
+        for(i=0;i<8;i++){
+            for(j=0;j<6;j++){
+                d = this.hotel[i][j].getDni();
+                if(d == dni) {
+                    this.hotel[i][j] = null;
+                }
+            }
+        }
+
     }
 }
