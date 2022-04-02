@@ -103,7 +103,7 @@ public class Hotel {
         int i;
         double k;
         double [] hab = new double[48];
-        for(i=0;i<48;i++){
+        for(i=0;i<tipo.length;i++){
             if(tipo[i] == 2){
                 k = habPlantaDisponible(7);
                 hab[i] = k;
