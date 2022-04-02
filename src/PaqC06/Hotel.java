@@ -129,7 +129,7 @@ public class Hotel {
         double [] hab = tipoHab(tipo);
         for(h=0;h<48;h++) {
             double k = hab[h];
-            if (k!=0) {
+            if (k!=0.0) {
                 int i = (int) k;
                 int j = (int) ((k - i) * 10);
                 i--;
