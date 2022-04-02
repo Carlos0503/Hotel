@@ -123,7 +123,8 @@ public class Hotel {
         }
         return hab;
     }
-    public void hacerReserva(int [] tipo){
+    public void hacerReserva(int [] tipo,String dni, String nombre, String apellidos, String telefono, String tarjeta,
+    String fechaent, String fechasal, String regali){
         int h;
         double [] hab = tipoHab(tipo);
         for(h=0;h<48;h++) {
@@ -131,17 +132,9 @@ public class Hotel {
             if (k!=0) {
                 int i = (int) k;
                 int j = (int) ((k - i) * 10);
-                String dni;
-                String nombre;
-                String apellidos;
-                String telefono;
-                String tarjeta;
-                String fechaent;
-                String fechasal;
-                String regali;
                 i--;
                 j--;
-                // Este método llamará al metodo rellenarHab cuando se unan las dos partes
+                rellenarHab(i,j,dni,nombre,apellidos,telefono,tarjeta,fechaent,fechasal,regali);
             }
         }
     }
