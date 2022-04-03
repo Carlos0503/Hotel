@@ -133,7 +133,7 @@ public class Hotel {
                 int i = (int) k;
                 int j = (int) ((k - i) * 10);
                 i--;
-                j--;
+
                 rellenarHab(i,j,dni,nombre,apellidos,telefono,tarjeta,fechaent,fechasal,regali);
             }
         }
@@ -141,7 +141,6 @@ public class Hotel {
     protected void rellenarHab(int i,int j,String dni,String nombre,String apellidos,String telefono,String tarjeta,String fechaent,String fechasal,String regali){
         Reserva r = new Reserva(dni,nombre,apellidos,telefono,tarjeta,fechaent,fechasal,regali);
         setHotel(i,j,r);
-
     }
     public void eliminarRes(String dni){
         int i;
