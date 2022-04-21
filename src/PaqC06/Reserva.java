@@ -85,4 +85,16 @@ public class Reserva {
         this.regali = regali;
     }
 
+    @Override
+    public String toString() {
+        return "Cliente" + '\n'+
+                "dni: " + dni + '\n' +
+                ", nombre: " + nombre + '\n' +
+                ", apellidos: " + apellidos + '\n' +
+                ", telefono: " + telefono + '\n' +
+                ", tarjeta: " + tarjeta + '\n' +
+                ", fechaent: " + fechaent + '\n' +
+                ", fechasal: " + fechasal + '\n' +
+                ", regali:" + regali + '\n';
+    }
 }

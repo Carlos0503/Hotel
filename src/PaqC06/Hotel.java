@@ -160,7 +160,12 @@ public class Hotel {
         int i;
         int j;
         for(i=0;i<8;i++){
-            for(i)
+            for(j=0;j<6;j++){
+                if(this.hotel[i][j].getDni()==dni){
+                    this.hotel[i][j].toString();
+                }
+            }
         }
+        System.out.println("El dni no coincide con ninguna reserva del hotel");
     }
 }
